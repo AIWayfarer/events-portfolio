@@ -2,32 +2,71 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+body{
+  width: 100vw;
+  overflow-x: hidden;
+}
+
+.hover-underline-animation {
+  display: inline-block;
+  position: relative;
+}
+
+.hover-underline-animation:after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 8px;
+  bottom: -10px;
+  left: 0;
+  background-color: #cee4e8;
+  transform-origin: bottom right;
+  transition: transform 0.5s ease-out;
+}
+
+.hover-underline-animation:hover:after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+
+.playfair{
+    font-family: var(--playfairDisplay);
+}
+
+body,.noto{
+    font-family: var(--notoSans);
+}
+
+.circle1{
+  animation: animate infinite 30s ease-in-out;
+}
+
+.circle2{
+  animation: animate2 infinite 30s ease-in-out;
+}
+
+@keyframes animate {
+  0%{
+    transform: translate(0px, 0px);
+  }
+  50%{
+    transform: translate(50px, 50px);
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
-}
-
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+@keyframes animate2 {
+  0%{
+    transform: translate(0px, 0px);
+  }
+  50%{
+    transform: translate(-50px, -50px);
   }
 }
