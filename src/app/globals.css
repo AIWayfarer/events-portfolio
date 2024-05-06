@@ -2,13 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  scroll-behavior: smooth;
 }
 
-body{
+body {
   width: 100vw;
   overflow-x: hidden;
 }
@@ -36,37 +37,59 @@ body{
   transform-origin: bottom left;
 }
 
-
-.playfair{
-    font-family: var(--playfairDisplay);
+.underlineText {
+  display: inline-block;
+  position: relative;
 }
 
-body,.noto{
-    font-family: var(--notoSans);
+.underlineText:after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 8px;
+  bottom: -10px;
+  left: 0;
+  background-color: #cee4e8;
+  transform: scaleX(1);
+  transform-origin: bottom left;
 }
 
-.circle1{
+h1,h2,h3,h4,h5,h6{
+  font-family: var(--playfairDisplay) !important;
+}
+
+.playfair {
+  font-family: var(--playfairDisplay);
+}
+
+body,
+.noto {
+  font-family: var(--notoSans);
+}
+
+.circle1 {
   animation: animate infinite 30s ease-in-out;
 }
 
-.circle2{
+.circle2 {
   animation: animate2 infinite 30s ease-in-out;
 }
 
 @keyframes animate {
-  0%{
+  0% {
     transform: translate(0px, 0px);
   }
-  50%{
+  50% {
     transform: translate(50px, 50px);
   }
 }
 
 @keyframes animate2 {
-  0%{
+  0% {
     transform: translate(0px, 0px);
   }
-  50%{
+  50% {
     transform: translate(-50px, -50px);
   }
 }

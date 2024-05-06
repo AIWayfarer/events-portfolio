@@ -1,9 +1,10 @@
 "use client";
-
+import { urlFor } from "@/utils/UrlBuilder";
 import { motion } from "framer-motion";
 import React from "react";
+import PortableText from "react-portable-text";
 
-const AboutMe = () => {
+const AboutMe = ({ data }) => {
   return (
     <div className="flex flex-row flex-wrap-reverse justify-center gap-10 items-center  w-full relative ">
       <div className="max-w-[800px] z-10">
@@ -24,26 +25,14 @@ const AboutMe = () => {
             Planner.
           </span>
         </motion.h1>
-        <motion.p
+        <motion.div
           viewport={{ once: true, amount: 0.7 }}
           initial={{ y: 100, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.7, type: "smooth", ease: "easeInOut" }}
         >
-          An inventive eye, a passion for party planning, and a calming kindness
-          on a wedding day are what Mindy Weiss believes has allowed her company
-          to withstand the test of time over the past three decades. Known as
-          one of the most creative minds in the events community, bringing to
-          life the unimaginable in uniquely personal ways is what she does best.
-          Mindy and her energetic team plan and produce parties and weddings
-          around the world for couples, corporations, non-profit organizations,
-          celebrity, and social hosts of all kinds. With a home base in Los
-          Angeles and a vast experience on the road, no matter where one
-          celebrates, a Mindy Weiss signature event is one that is truly yours,
-          never hers. Since launching in 1992, Mindy has expanded her brand into
-          product lines, best-selling books, and brand partnerships, continuing
-          to bring a sense of whimsy and love to all that she does.
-        </motion.p>
+          <PortableText content={data.content} />
+        </motion.div>
       </div>
       <motion.div
         viewport={{ once: true, amount: 0.7 }}
@@ -55,7 +44,7 @@ const AboutMe = () => {
         <span className="">
           <img
             className="w-[400px] h-[400px] rounded-full"
-            src="https://mindyweiss.com/wp-content/uploads/2020/06/mindy-1-1024x1024.jpg"
+            src={urlFor(data.image).url()}
           />
         </span>
       </motion.div>

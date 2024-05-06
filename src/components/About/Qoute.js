@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import React from "react";
 
-const Qoute = () => {
+const Qoute = ({ data }) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 100 }}
@@ -13,12 +13,8 @@ const Qoute = () => {
       className="flex justify-center items-center w-full relative"
     >
       <div className="flex flex-col gap-5">
-        <p className="max-w-[1000px] playfair text-5xl">
-          "Mindy, you are our therapist, peace keeper, cheerleader, stress
-          reliever... I can go on and on. Your heart and love is one of one! We
-          love you soooo."
-        </p>
-        <p className="text-xl font-bold text-[#96c4b3]">- Khloe Kardashian</p>
+        <p className="max-w-[1000px] playfair text-5xl">{data.text}</p>
+        <p className="text-xl font-bold text-[#96c4b3]">{data.author}</p>
       </div>
     </motion.div>
   );
