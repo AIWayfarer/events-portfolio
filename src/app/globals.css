@@ -11,6 +11,8 @@
 
 body {
   width: 100vw;
+  background-color: #101010;
+  color: white;
   overflow-x: hidden;
 }
 
@@ -55,7 +57,12 @@ body {
   transform-origin: bottom left;
 }
 
-h1,h2,h3,h4,h5,h6{
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--playfairDisplay) !important;
 }
 
@@ -81,7 +88,7 @@ body,
     transform: translate(0px, 0px);
   }
   50% {
-    transform: translate(50px, 50px);
+    transform: translate(80px, 80px);
   }
 }
 
@@ -90,6 +97,6 @@ body,
     transform: translate(0px, 0px);
   }
   50% {
-    transform: translate(-50px, -50px);
+    transform: translate(-80px, -80px);
   }
 }

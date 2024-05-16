@@ -1,25 +1,64 @@
-import React from "react";
+"use client";
+import React, { useEffect, useRef } from "react";
 import ProjectCard from "./ProjectCard";
+import {
+  AnimatePresence,
+  motion,
+  useScroll,
+  useTransform,
+} from "framer-motion";
+import { useGlobalStore } from "../../../store/useStore";
+import { urlFor } from "@/utils/UrlBuilder";
 
 const ProjectGrid = ({ data }) => {
+  const containerRef = useRef();
+
+  const { bgImg, setBgImg } = useGlobalStore();
+
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+  });
+
+  useEffect(() => {
+    if (bgImg === null) {
+      setBgImg(urlFor(data[0].images[0]).url());
+    }
+  }, []);
+
+  const x = useTransform(scrollYProgress, [0, 1], ["1%", "-95%"]);
+
   return (
-    <div id="work" className="relative">
-      <div className="w-full h-full md:h-[90vh] md:grid md:grid-cols-3 md:grid-rows-2 md:gap-4 space-y-5 md:space-y-0 z-10">
-        <div className="col-span-2  overflow-hidden z-10">
-          <ProjectCard data={data[0]} />
-        </div>
-        <div className="md:row-span-2 col-span-1  overflow-hidden z-10">
-          <ProjectCard data={data[1]} />
-        </div>
-        <div className="md:row-span-1 col-span-1 overflow-hidden z-10">
-          <ProjectCard data={data[2]} />
-        </div>
-        <div className="md:row-span-1 col-span-1  overflow-hidden z-10">
-          <ProjectCard data={data[3]} />
+    <div id="work" className=" relative">
+      <div
+        ref={containerRef}
+        style={{ height: `${data.length * 60}svh` }}
+        className=" w-full"
+      >
+        <div className="sticky top-0 flex h-screen items-center overflow-hidden">
+          <AnimatePresence>
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ amount: "all" }}
+              transition={{ duration: 0.8, type: "smooth", ease: "easeInOut" }}
+              exit={{ opacity: 0 }}
+              style={{
+                background: `url(${bgImg})`,
+                backgroundRepeat: "no-repeat",
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                filter: "blur(20px)",
+                opacity: "80%",
+              }}
+              className="w-full bg-cover absolute top-0 h-screen "
+            ></motion.div>
+          </AnimatePresence>
+          <motion.div style={{ x }} className="flex gap-10 pl-20 ">
+            {data &&
+              data.map((card) => <ProjectCard key={card.id} data={card} />)}
+          </motion.div>
         </div>
       </div>
-      <div className="circle1 w-[200px] h-[200px]  lg:w-[450px] lg:h-[450px]  bg-[#cee4e8] rounded-full absolute right-[-100px] bottom-[-200px] z-[-5]"></div>
-      <div className="circle2 w-[200px] h-[200px]  lg:w-[450px] lg:h-[450px] bg-[#f2c7db] rounded-full absolute left-[-100px] top-[-150px] z-[-5]"></div>
     </div>
   );
 };

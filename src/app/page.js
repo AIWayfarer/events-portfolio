@@ -18,14 +18,14 @@ export default async function Home() {
   return (
     <>
       <Header home={true} />
+      <Welcome />
       <main className="px-10">
-        <Welcome />
         <div id="about" className="py-[400px] flex flex-col gap-[400px]">
           <AboutMe data={homeData.about} />
           <Qoute data={homeData.quote} />
-          <ProjectGrid data={projectsData} />
         </div>
       </main>
+          <ProjectGrid data={projectsData} />
       <Footer />
     </>
   );

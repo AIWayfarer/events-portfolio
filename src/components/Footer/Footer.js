@@ -8,7 +8,10 @@ const Footer = () => {
     <div className="flex flex-col gap-10">
       <div className="p-5 lg:p-20 flex flex-wrap gap-10 justify-between">
         <div className="flex items-center">
-          <img className="w-[400px]" src="https://mindyweiss.com/wp-content/themes/mindy-weiss-2020/img/logo.svg" />
+          <img
+            className="w-[400px]"
+            src="https://mindyweiss.com/wp-content/themes/mindy-weiss-2020/img/logo.svg"
+          />
         </div>
         <div className="flex gap-3 items-center">
           <a
@@ -41,7 +44,7 @@ const Footer = () => {
           </a>
         </div>
       </div>
-      <div className="p-5 bg-slate-200 text-center">
+      <div className="p-5 bg-white/5 text-center">
         <p>&copy; 2024 Blake. All rights reserved.</p>
       </div>
     </div>
