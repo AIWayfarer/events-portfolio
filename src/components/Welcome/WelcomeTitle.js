@@ -5,20 +5,6 @@ import Lenis from "lenis";
 import React, { useEffect, useRef } from "react";
 
 const WelcomeTitle = ({ title }) => {
-  useEffect(() => {
-    const lenis = new Lenis();
-    function raf(time) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
-
-    requestAnimationFrame(raf);
-
-    return () => {
-      lenis.destroy();
-    };
-  }, []);
-
   const titleArr = title.split("");
   const ref = useRef();
 

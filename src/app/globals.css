@@ -72,7 +72,7 @@ h6 {
 
 body,
 .noto {
-  font-family: var(--notoSans);
+  font-family: var(--notoSans) ;
 }
 
 .circle1 {

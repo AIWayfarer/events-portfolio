@@ -35,11 +35,12 @@ const ProjectGrid = ({ data }) => {
         className=" w-full"
       >
         <div className="sticky top-0 flex h-screen items-center overflow-hidden">
-          <AnimatePresence>
+          {/* <AnimatePresence>
             <motion.div
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
-              viewport={{ amount: "all" }}
+              // animate={{opacity: 1}}
+              viewport={{ amount: "all", margin: "100%" }}
               transition={{ duration: 0.8, type: "smooth", ease: "easeInOut" }}
               exit={{ opacity: 0 }}
               style={{
@@ -48,14 +49,14 @@ const ProjectGrid = ({ data }) => {
                 backgroundSize: "cover",
                 backgroundPosition: "center",
                 filter: "blur(20px)",
-                opacity: "80%",
+               
               }}
-              className="w-full bg-cover absolute top-0 h-screen "
+              className="w-full bg-opacity-80 bg-cover absolute top-0 h-screen "
             ></motion.div>
-          </AnimatePresence>
+          </AnimatePresence> */}
           <motion.div style={{ x }} className="flex gap-10 pl-20 ">
             {data &&
-              data.map((card) => <ProjectCard key={card.id} data={card} />)}
+              data.map((card, index) => <ProjectCard index={index} key={card.id} data={card} />)}
           </motion.div>
         </div>
       </div>
