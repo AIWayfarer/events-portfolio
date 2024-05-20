@@ -13,7 +13,7 @@ const Qoute = ({ data }) => {
       className="flex justify-center items-center w-full relative"
     >
       <div className="flex flex-col gap-5">
-        <p className="max-w-[1000px] playfair text-5xl">{data.text}</p>
+        <p className="max-w-[1000px] playfair text-2xl md:text-2xl">{data.text}</p>
         <p className="text-xl font-bold text-[#96c4b3]">{data.author}</p>
       </div>
     </motion.div>

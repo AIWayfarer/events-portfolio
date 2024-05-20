@@ -16,17 +16,15 @@ export default async function Home() {
   );
 
   return (
-    <>
-      <Header home={true} />
-      <Welcome />
-      <main className="px-10">
-        <div id="about" className="py-[400px] flex flex-col gap-[400px]">
-          <AboutMe data={homeData.about} />
-          <Qoute data={homeData.quote} />
-        </div>
-      </main>
-          <ProjectGrid data={projectsData} />
+    <div className="w-full h-full  px-5">
+      <div  className=" h-full flex flex-col gap-[400px]">
+        <Header home={true} />
+        <Welcome />
+        <AboutMe data={homeData.about} />
+        <Qoute data={homeData.quote} />
+      </div>
+      <ProjectGrid data={projectsData} />
       <Footer />
-    </>
+    </div>
   );
 }

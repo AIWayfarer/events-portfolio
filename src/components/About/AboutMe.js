@@ -20,18 +20,47 @@ const AboutMe = ({ data }) => {
   return (
     <div
       ref={ref}
-      className="flex  flex-row flex-wrap-reverse justify-center gap-10   w-full relative "
+      id="about"
+      className="flex  lg:flex-col-reverse xl:flex-row   overflow-hidden justify-center gap-10 items-center   w-full relative "
     >
       <div
         style={{ height: "100% !important" }}
-        className="max-w-[800px] flex flex-col !justify-between  z-30"
+        className="max-w-[800px] h-full flex flex-col !justify-between  z-30"
       >
+        <motion.div
+          transition={{ duration: 0.7, type: "smooth", ease: "easeInOut" }}
+          className=" z-10 flex lg:hidden"
+        >
+          <span className="">
+            <img
+              className="w-full object-cover "
+              src={urlFor(data.image).url()}
+            />
+          </span>
+        </motion.div>
+        <motion.h1
+          viewport={{ once: true, amount: 0.7 }}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.5, type: "smooth", ease: "easeInOut" }}
+          className="flex lg:flex  text-5xl lg:text-8xl  playfair heading xl:hidden  flex-col  mb-10"
+        >
+          <span>
+            Wedding <span className="text-white">+</span>
+          </span>{" "}
+          <span className="">
+            <motion.span className="hover-underline-animation ">
+              Event
+            </motion.span>{" "}
+            Planner.
+          </span>
+        </motion.h1>
         <motion.div
           viewport={{ once: true, amount: 0.7 }}
           initial={{ y: 100, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.7, type: "smooth", ease: "easeInOut" }}
-          className="pr-40 mb-20"
+          className="pr-0 lg:pr-40 mb-20"
         >
           <PortableText content={data.content} />
         </motion.div>
@@ -43,7 +72,7 @@ const AboutMe = ({ data }) => {
           style={{
             x: 200,
           }}
-          className=" text-8xl text-right  playfair heading flex flex-col  mb-10"
+          className="hidden lg:hidden text-5xl lg:text-8xl text-right  playfair heading xl:flex flex-col  mb-10"
         >
           <span>
             Wedding <span className="text-white">+</span>
@@ -59,11 +88,11 @@ const AboutMe = ({ data }) => {
       <motion.div
         style={{ y: y }}
         transition={{ duration: 0.7, type: "smooth", ease: "easeInOut" }}
-        className=" z-10"
+        className=" z-10 hidden lg:flex"
       >
         <span className="">
           <img
-            className="max-w-[600px] h-full"
+            className="max-w-[600px] object-cover w-[150px] md:h-full md:w-full"
             src={urlFor(data.image).url()}
           />
         </span>

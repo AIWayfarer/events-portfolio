@@ -28,35 +28,18 @@ const ProjectGrid = ({ data }) => {
   const x = useTransform(scrollYProgress, [0, 1], ["1%", "-95%"]);
 
   return (
-    <div id="work" className=" relative">
+    <div  id="work" className=" relative ">
       <div
         ref={containerRef}
         style={{ height: `${data.length * 60}svh` }}
-        className=" w-full"
+        className=" w-full  relative"
       >
-        <div className="sticky top-0 flex h-screen items-center overflow-hidden">
-          {/* <AnimatePresence>
-            <motion.div
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              // animate={{opacity: 1}}
-              viewport={{ amount: "all", margin: "100%" }}
-              transition={{ duration: 0.8, type: "smooth", ease: "easeInOut" }}
-              exit={{ opacity: 0 }}
-              style={{
-                background: `url(${bgImg})`,
-                backgroundRepeat: "no-repeat",
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-                filter: "blur(20px)",
-               
-              }}
-              className="w-full bg-opacity-80 bg-cover absolute top-0 h-screen "
-            ></motion.div>
-          </AnimatePresence> */}
+        <div className="sticky pt-[200px] md:pt-0 top-0 flex h-screen items-center overflow-hidden">
           <motion.div style={{ x }} className="flex gap-10 pl-20 ">
             {data &&
-              data.map((card, index) => <ProjectCard index={index} key={card.id} data={card} />)}
+              data.map((card, index) => (
+                <ProjectCard index={index} key={card.id} data={card} />
+              ))}
           </motion.div>
         </div>
       </div>

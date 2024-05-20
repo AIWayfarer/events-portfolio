@@ -1,6 +1,7 @@
 import { urlFor } from "@/utils/UrlBuilder";
 import { useScroll, motion } from "framer-motion";
 import React, { useEffect, useRef, useState } from "react";
+import Footer from "../Footer/Footer";
 
 const WorkPage = ({ projectData }) => {
   const containerRef = useRef();
@@ -98,7 +99,7 @@ const WorkPage = ({ projectData }) => {
               }}
               initial={{ y: 40, opacity: 0 }}
               animate={{ opacity: 1, y: 0 }}
-              className="text-8xl  font-black text-[#d10000]"
+              className="text-8xl text-center font-black text-[#d10000]"
             >
               {projectData.title}
             </motion.h1>
@@ -111,7 +112,7 @@ const WorkPage = ({ projectData }) => {
               }}
               initial={{ y: 40, opacity: 0 }}
               animate={{ opacity: 1, y: 0 }}
-              className="text-2xl max-w-full mt-2 lg:max-w-[80vw] noto text-center font-medium text-white"
+              className="text-2xl text-center max-w-full mt-2 lg:max-w-[80vw] noto  font-medium text-white"
             >
               {projectData.description}
             </motion.p>
@@ -120,7 +121,7 @@ const WorkPage = ({ projectData }) => {
       </div>
       <div
         ref={containerRef}
-        className="flex flex-row gap-5 justify-center items-start flex-wrap p-20 "
+        className="flex flex-row gap-5 justify-center items-start flex-wrap p-3 md:p-20 "
       >
         {projectData.images.map((img, index) => (
           <>
@@ -145,6 +146,9 @@ const WorkPage = ({ projectData }) => {
             </motion.div>
           </>
         ))}
+      </div>
+      <div className="mt-[100px]">
+        <Footer />
       </div>
     </div>
   );

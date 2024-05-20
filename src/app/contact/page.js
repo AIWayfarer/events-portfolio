@@ -26,11 +26,11 @@ const page = async () => {
                 className="my-5 flex gap-3 flex-col"
               >
                 <div className="flex flex-col">
-                  <label htmlFor="Name" className="text-[#215d64]">
+                  <label htmlFor="Name" className="text-white/80">
                     Name<span className="text-red-600"> *</span>
                   </label>
                   <input
-                    className="bg-[#f3f3f3] p-3 mt-1"
+                    className="bg-[#f3f3f3] text-black p-3 mt-1"
                     type="text"
                     id="Name"
                     name="Name"
@@ -38,11 +38,11 @@ const page = async () => {
                   />
                 </div>
                 <div className="flex flex-col">
-                  <label htmlFor="Email" className="text-[#215d64]">
+                  <label htmlFor="Email" className="text-white/80">
                     Email<span className="text-red-600"> *</span>
                   </label>
                   <input
-                    className="bg-[#f3f3f3] p-3 mt-1"
+                    className="bg-[#f3f3f3] text-black p-3 mt-1"
                     type="text"
                     id="Email"
                     name="Email"
@@ -50,11 +50,11 @@ const page = async () => {
                   />
                 </div>
                 <div className="flex flex-col">
-                  <label htmlFor="Phone" className="text-[#215d64]">
+                  <label htmlFor="Phone" className="text-white/80">
                     Phone<span className="text-red-600"> *</span>
                   </label>
                   <input
-                    className="bg-[#f3f3f3] p-3 mt-1"
+                    className="bg-[#f3f3f3] text-black p-3 mt-1"
                     type="text"
                     id="Phone"
                     name="Phone"
@@ -62,28 +62,31 @@ const page = async () => {
                   />
                 </div>
                 <div className="flex flex-col">
-                  <label htmlFor="Message" className="text-[#215d64]">
+                  <label htmlFor="Message" className="text-white/80">
                     Message<span className="text-red-600"> *</span>
                   </label>
                   <textarea
                     rows={"10"}
-                    className="bg-[#f3f3f3] p-3 mt-1"
+                    className="bg-[#f3f3f3] p-3 mt-1 text-black"
                     name="Message"
                     id="Message"
                   ></textarea>
                 </div>
-                <button className="bg-[#215d64] p-3 text-white" type="submit">
+                <button
+                  className="bg-[#215d64] p-3 text-white/80"
+                  type="submit"
+                >
                   Send
                 </button>
               </form>
             </div>
-            <div className="flex prose prose-headings:text-4xl flex-col">
+            <div className="flex prose prose-headings:text-white prose-p:text-white/80 prose-a:text-white/80  prose-headings:text-4xl flex-col">
               <PortableText value={data.details} />
             </div>
           </div>
         </div>
-        <div className=" w-[300px] h-[300px]  lg:w-[900px] lg:h-[900px] bg-[#cee4e8]  rounded-full absolute right-[-550px] bottom-[-100px] z-[-10]"></div>
-        <div className=" w-[300px] h-[300px]  lg:w-[900px] lg:h-[900px]  bg-[#f2c7db] rounded-full absolute left-[-550px] top-[100px] z-[-10]"></div>
+        {/* <div className=" w-[300px] h-[300px]  lg:w-[900px] lg:h-[900px] bg-[#cee4e8]  rounded-full absolute right-[-550px] bottom-[-100px] z-[-10]"></div>
+        <div className=" w-[300px] h-[300px]  lg:w-[900px] lg:h-[900px]  bg-[#f2c7db] rounded-full absolute left-[-550px] top-[100px] z-[-10]"></div> */}
       </div>
       <div className="mt-40">
         <Footer />

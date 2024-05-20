@@ -21,31 +21,38 @@ const Header = ({ home }) => {
 
     fetchLogo();
 
-    const handleScroll = () => {
-      const scrollY = window.scrollY;
-      const viewportHeight = window.innerHeight - 300;
-      const isScrolled = scrollY > viewportHeight;
+    if (home) {
+      const handleScroll = () => {
+        const scrollY = window.scrollY;
+        const viewportHeight = window.innerHeight - 300;
+        const isScrolled = scrollY > viewportHeight;
 
-      if (home) {
-        controls.start({
-          opacity: isScrolled ? 1 : 0,
-          y: isScrolled ? 0 : -50,
-        });
-      } else {
-        controls.start({
-          opacity: 1,
-          y: 0,
-        });
-      }
-    };
+        if (home) {
+          controls.start({
+            opacity: isScrolled ? 1 : 0,
+            y: isScrolled ? 0 : -50,
+          });
+        } else {
+          controls.start({
+            opacity: 1,
+            y: 0,
+          });
+        }
+      };
 
-    handleScroll();
+      handleScroll();
 
-    window.addEventListener("scroll", handleScroll);
+      window.addEventListener("scroll", handleScroll);
 
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
+      return () => {
+        window.removeEventListener("scroll", handleScroll);
+      };
+    } else {
+      controls.start({
+        opacity: 1,
+        y: 0,
+      });
+    }
   }, []);
 
   return (
@@ -53,9 +60,9 @@ const Header = ({ home }) => {
       style={{ opacity: 0 }}
       animate={controls}
       transition={{ duration: 0.5 }}
-      className="fixed top-0 flex flex-row z-50  w-full justify-between items-center p-5 lg:p-10"
+      className="fixed top-0  flex flex-row z-50 w-full  justify-between items-center p-5 lg:p-10"
     >
-      <div className="relative">
+      <div className="relative hidden lg:flex">
         {logo && <img className="w-28" src={urlFor(logo).url()} />}
         <div className="w-[250px] h-[250px]  lg:w-[400px] lg:h-[400px]  bg-[#215d64] rounded-full absolute left-0 top-0 -translate-y-[66%] -translate-x-1/2 z-[-5]"></div>
       </div>

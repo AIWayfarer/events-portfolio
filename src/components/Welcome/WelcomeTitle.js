@@ -20,33 +20,33 @@ const WelcomeTitle = ({ title }) => {
   const rotateA = useTransform(scrollYProgress, [0, 1], [25, 70]);
   const rotateE = useTransform(scrollYProgress, [0, 1], [10, 55]);
 
-  const transformStyles = (char) => {
-    switch (char) {
-      case "B":
+  const transformStyles = (index) => {
+    switch (index) {
+      case 0:
         return {
           top: "100px",
           x: moveSpeed,
           rotate: rotateB,
         };
-      case "L":
+      case 1:
         return {
           top: "130px",
           y: moveSpeed,
           rotate: rotateLK,
         };
-      case "A":
+      case 2:
         return {
           top: "70px",
           x: negitiveMoveSpeed,
           rotate: rotateA,
         };
-      case "K":
+      case 3:
         return {
           top: "140px",
           y: negitiveMoveSpeed,
           rotate: rotateLK,
         };
-      case "E":
+      case 4:
         return {
           top: "90px",
           y: moveSpeed,
@@ -63,20 +63,20 @@ const WelcomeTitle = ({ title }) => {
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 1, ease: "easeInOut" }}
       ref={ref}
-      className="text-center pt-[200px] w-full h-full"
+      className="text-center  w-full h-full"
     >
       <motion.div className="flex relative flex-row justify-center">
         {titleArr.map((char, index) => {
-          const styles = transformStyles(char);
+          const styles = transformStyles(index);
           return (
             <div
               key={index}
-              className="w-[220px] text-center flex flex-row justify-center h-fit"
+              className="w-[100px]  md:w-[170px]  text-center flex flex-row justify-center h-fit"
             >
               <motion.span
                 style={styles}
                 transition={{ type: "smooth", ease: "easeInOut" }}
-                className="absolute font-black text-[20rem]"
+                className="absolute font-black text-[5rem] md:text-[15rem]"
               >
                 {char}
               </motion.span>
