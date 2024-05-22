@@ -1,10 +1,9 @@
-"use client";
+// "use client";
 
+import Footer from "@/components/Footer/Footer";
 import Header from "@/components/Header";
 import WorkPage from "@/components/Work/WorkPage";
 import { fetchData } from "@/utils/fetchData";
-import { motion, useScroll, useTransform } from "framer-motion";
-import React, { useEffect, useRef, useState } from "react";
 
 const page = async ({ params }) => {
   let projectData = await fetchData(
@@ -17,6 +16,7 @@ const page = async ({ params }) => {
       <div className="p-3 md:p-10 ">
         <WorkPage projectData={projectData} />
       </div>
+      <Footer/>
     </>
   );
 };
