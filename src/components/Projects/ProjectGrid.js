@@ -28,7 +28,7 @@ const ProjectGrid = ({ data }) => {
   const x = useTransform(scrollYProgress, [0, 1], ["1%", "-95%"]);
 
   return (
-    <div  id="work" className=" relative ">
+    <div id="work" className=" relative ">
       <div
         ref={containerRef}
         style={{ height: `${data.length * 60}svh` }}

@@ -1,3 +1,5 @@
+"use client";
+
 import { urlFor } from "@/utils/UrlBuilder";
 import { useScroll, motion } from "framer-motion";
 import React, { useEffect, useRef, useState } from "react";
@@ -14,64 +16,39 @@ const WorkPage = ({ projectData }) => {
   });
 
   useEffect(() => {
-    scrollYProgress.on("change", (e) => {
-      if (e <= 0.1) {
-        setAnimate(false);
-      } else {
-        setAnimate(true);
-      }
-    });
-  }, []);
+    const handleScroll = (value) => {
+      setAnimate(value > 0.1);
+    };
+
+    const unsubscribe = scrollYProgress.on("change", handleScroll);
+
+    return () => unsubscribe();
+  }, [scrollYProgress]);
 
   return (
-    <div className="flex w-full   flex-col justify-center items-center">
-      <div className="p-20  h-[100svh] justify-center gap-3 flex flex-row flex-wrap  w-full">
-        <div className="relative justify-center flex flex-col   w-full">
-          <div className="relative  w-full flex  justify-center items-center">
-            {projectData.images.map((img, index) => {
-              if (index > 3) {
-                return;
-              }
-
+    <div className="flex w-full flex-col justify-center items-center">
+      <div className="p-20 h-[100svh] justify-center gap-3 flex flex-row flex-wrap w-full">
+        <div className="relative justify-center flex flex-col w-full">
+          <div className="relative w-full flex justify-center items-center">
+            {projectData.images.slice(0, 4).map((img, index) => {
               const position = [
-                {
-                  opacity: 1,
-                  x: 0,
-                  rotate: 3,
-                },
-                {
-                  opacity: 1,
-                  x: -100,
-                  y: -50,
-                  rotate: -7,
-                },
-                {
-                  opacity: 1,
-                  x: 200,
-                  y: -130,
-                  rotate: 7,
-                },
-                {
-                  opacity: 1,
-                  x: -200,
-                  y: -70,
-                  rotate: 10,
-                },
+                { opacity: 1, x: 0, rotate: 3 },
+                { opacity: 1, x: -100, y: -50, rotate: -7 },
+                { opacity: 1, x: 200, y: -130, rotate: 7 },
+                { opacity: 1, x: -200, y: -70, rotate: 10 },
               ];
 
               const zIndex = projectData.images.length - index;
 
               return (
-                <>
+                <React.Fragment key={index}>
                   {!animate && (
                     <motion.div
                       layoutId={`img-${index}`}
                       className="absolute"
                       style={{ zIndex }}
-                      key={index}
                     >
                       <motion.img
-                        // initial={{ opacity: 0, x: 0, y: 0 }}
                         animate={position[index]}
                         transition={{
                           duration: 0.6,
@@ -83,13 +60,13 @@ const WorkPage = ({ projectData }) => {
                       />
                     </motion.div>
                   )}
-                </>
+                </React.Fragment>
               );
             })}
           </div>
           <div
             id="name"
-            className="w-full  flex flex-col justify-center items-center translate-y-[200px] z-30"
+            className="w-full flex flex-col justify-center items-center translate-y-[200px] z-30"
           >
             <motion.h1
               transition={{
@@ -112,7 +89,7 @@ const WorkPage = ({ projectData }) => {
               }}
               initial={{ y: 40, opacity: 0 }}
               animate={{ opacity: 1, y: 0 }}
-              className="text-2xl text-center max-w-full mt-2 lg:max-w-[80vw] noto  font-medium text-white"
+              className="text-2xl text-center max-w-full mt-2 lg:max-w-[80vw] noto font-medium "
             >
               {projectData.description}
             </motion.p>
@@ -121,30 +98,27 @@ const WorkPage = ({ projectData }) => {
       </div>
       <div
         ref={containerRef}
-        className="flex flex-row gap-5 justify-center items-start flex-wrap p-3 md:p-20 "
+        className="flex flex-row gap-5 justify-center items-start flex-wrap p-3 md:p-20"
       >
         {projectData.images.map((img, index) => (
-          <>
-            <motion.div
-              whileInView={{ opacity: 1 }}
-              //   viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-              initial={{ opacity: 0 }}
-              layoutId={`img-${index}`}
-              className=""
-              key={index}
-            >
-              <motion.img
-                transition={{
-                  duration: 0.6,
-                  ease: "easeInOut",
-                  type: "smooth",
-                }}
-                className="w-[400px] object-cover h-[400px]"
-                src={urlFor(img).url()}
-              />
-            </motion.div>
-          </>
+          <motion.div
+            key={index}
+            whileInView={() => setAnimate(true)}
+            transition={{ duration: 0.5 }}
+            initial={{ opacity: 1 }}
+            layoutId={`img-${index}`}
+            className=""
+          >
+            <motion.img
+              transition={{
+                duration: 0.6,
+                ease: "easeInOut",
+                type: "smooth",
+              }}
+              className="w-[400px] object-cover h-[400px]"
+              src={urlFor(img).url()}
+            />
+          </motion.div>
         ))}
       </div>
       <div className="mt-[100px]">

@@ -4,14 +4,18 @@ import { useScroll, useTransform, motion } from "framer-motion";
 import Lenis from "lenis";
 import React, { useEffect, useRef } from "react";
 
-const WelcomeTitle = ({ title }) => {
+const WelcomeTitle = ({ title, scrollYProgress }) => {
   const titleArr = title.split("");
-  const ref = useRef();
+  // const ref = useRef();
 
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start start", "end start"],
-  });
+  // const { scrollYProgress } = useScroll({
+  //   target: ref,
+  //   offset: ["start start", "end start"],
+  // });
+
+  useEffect(() => {
+    scrollYProgress.on("change", (e) => console.log(e));
+  }, []);
 
   const moveSpeed = useTransform(scrollYProgress, [0, 1], [0, -400]);
   const negitiveMoveSpeed = useTransform(scrollYProgress, [0, 1], [0, 400]);
@@ -52,6 +56,12 @@ const WelcomeTitle = ({ title }) => {
           y: moveSpeed,
           rotate: rotateE,
         };
+      case 5:
+        return {
+          top: "130px",
+          y: moveSpeed,
+          rotate: rotateLK,
+        };
       default:
         return {};
     }
@@ -62,7 +72,7 @@ const WelcomeTitle = ({ title }) => {
       initial={{ opacity: 0, scale: 0.5 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 1, ease: "easeInOut" }}
-      ref={ref}
+      // ref={ref}
       className="text-center  w-full h-full"
     >
       <motion.div className="flex relative flex-row justify-center">
